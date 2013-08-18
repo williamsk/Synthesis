@@ -29,9 +29,10 @@ namespace Synthesis.Generation
 		{
 			get
 			{
-				if (FullName.Contains(".")) return FullName.Substring(FullName.LastIndexOf('.') + 1);
+                string fullName = FullName;
+				if (fullName.Contains(".")) fullName = FullName.Substring(FullName.LastIndexOf('.') + 1);
 
-				return FullName;
+				return Configuration.ProviderResolver.Current.TypeNameTransformProvider.ApplyTransforms(fullName);
 			}
 		}
 

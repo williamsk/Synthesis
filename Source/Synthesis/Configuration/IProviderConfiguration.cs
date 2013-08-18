@@ -13,5 +13,6 @@ namespace Synthesis.Configuration
 		ITemplateSignatureProvider TemplateSignatureProvider { get; }
 		ITypeListProvider TypeListProvider { get; }
 		ISynthesisIndexFieldNameTranslator IndexFieldNameTranslator { get; }
+        ITypeNameTransformProvider TypeNameTransformProvider { get; }
 	}
 }

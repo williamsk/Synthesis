@@ -50,6 +50,7 @@ namespace Synthesis.Configuration
 			TemplateSignatureProvider = LoadTemplateSignatureProviderFromConfig();
 			TypeListProvider = LoadTypeListProviderFromConfig();
 			IndexFieldNameTranslator = LoadFieldNameTranslatorFromConfig();
+            TypeNameTransformProvider = LoadTypeNameTransformProviderFromConfig();
 		}
 
 		/// <summary>
@@ -81,6 +82,11 @@ namespace Synthesis.Configuration
 		/// Gets the currently configured FieldNameTranslator (converts Sitecore template field names to index field names)
 		/// </summary>
 		public ISynthesisIndexFieldNameTranslator IndexFieldNameTranslator { get; private set; }
+
+        /// <summary>
+        /// Gets the currently configured TypeNameTransformProvider (transforms template names when generating class and interface names)
+        /// </summary>
+        public ITypeNameTransformProvider TypeNameTransformProvider { get; private set; }
 
 		/// <summary>
 		/// Gets an instance of the Synthesis Generator pre-configured to use the current provider set
@@ -129,5 +135,10 @@ namespace Synthesis.Configuration
 		{
 			return (ISynthesisIndexFieldNameTranslator)Factory.CreateObject("/sitecore/synthesis/providers/indexFieldNameTranslator", true);
 		}
+
+        private static ITypeNameTransformProvider LoadTypeNameTransformProviderFromConfig()
+        {
+            return (ITypeNameTransformProvider)Factory.CreateObject("/sitecore/synthesis/providers/nameTransformProvider", true);
+        }
 	}
 }
