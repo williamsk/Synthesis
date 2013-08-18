@@ -75,7 +75,7 @@ namespace Synthesis.Generation
 		/// <summary>
 		/// Generates code representing a set of Sitecore templates
 		/// </summary>
-		private void GenerateTemplateCode(CodeCompileUnit concreteUnit, CodeCompileUnit interfaceUnit)
+		protected virtual void GenerateTemplateCode(CodeCompileUnit concreteUnit, CodeCompileUnit interfaceUnit)
 		{
 			CodeNamespace interfaceNamespace = interfaceUnit.CreateNamespace(Parameters.InterfaceNamespace);
 
