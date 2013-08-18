@@ -82,13 +82,18 @@ namespace Synthesis.Configuration
 		/// </summary>
 		public ISynthesisIndexFieldNameTranslator IndexFieldNameTranslator { get; private set; }
 
-		/// <summary>
-		/// Gets an instance of the Synthesis Generator pre-configured to use the current provider set
-		/// </summary>
-		public static Generator CreateGenerator()
-		{
-			return new Generator(Current.GeneratorParametersProvider, Current.TemplateInputProvider, Current.TemplateSignatureProvider, Current.FieldMappingProvider, Current.IndexFieldNameTranslator);
-		}
+        /// <summary>
+        /// Gets the currently configured Generator.
+        /// </summary>
+        public static GeneratorBase Generator
+        {
+            get
+            {
+                var generator = (GeneratorBase)Factory.CreateObject("/sitecore/synthesis/generator", true);
+                generator.Initialize(Current.GeneratorParametersProvider, Current.TemplateInputProvider, Current.TemplateSignatureProvider, Current.FieldMappingProvider, Current.IndexFieldNameTranslator);
+                return generator;
+            }
+        }
 
 		/// <summary>
 		/// Gets an instance of the Synthesis Synchronization Engine pre-configured to use the current provider set

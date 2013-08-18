@@ -40,7 +40,7 @@
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\..\Dependencies\Libraries\Sitecore\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\KillEverything.com\Dependencies\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

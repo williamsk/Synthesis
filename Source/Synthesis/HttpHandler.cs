@@ -126,7 +126,7 @@ namespace Synthesis
 			var timer = new Stopwatch();
 			timer.Start();
 			ProviderResolver.Current.TemplateInputProvider.Refresh();
-			ProviderResolver.CreateGenerator().GenerateToDisk();
+			ProviderResolver.Generator.GenerateToDisk();
 			timer.Stop();
 			
 			string result = string.Format("<p>Generation complete in {0} ms. You will want to rebuild to pick up the changes.</p>", timer.ElapsedMilliseconds);

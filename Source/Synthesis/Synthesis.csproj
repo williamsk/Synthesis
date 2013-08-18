@@ -36,25 +36,25 @@
   <ItemGroup>
     <Reference Include="Lucene.Net, Version=2.9.4.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\Libraries\Sitecore\Lucene.Net.dll</HintPath>
+      <HintPath>..\..\..\KillEverything.com\Dependencies\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Sitecore.ContentSearch">
-      <HintPath>..\..\Dependencies\Libraries\Sitecore\Sitecore.ContentSearch.dll</HintPath>
+      <HintPath>..\..\..\KillEverything.com\Dependencies\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.Linq">
-      <HintPath>..\..\Dependencies\Libraries\Sitecore\Sitecore.ContentSearch.Linq.dll</HintPath>
+      <HintPath>..\..\..\KillEverything.com\Dependencies\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.Linq.Lucene">
-      <HintPath>..\..\Dependencies\Libraries\Sitecore\Sitecore.ContentSearch.Linq.Lucene.dll</HintPath>
+      <HintPath>..\..\..\KillEverything.com\Dependencies\Sitecore.ContentSearch.Linq.Lucene.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.LuceneProvider">
-      <HintPath>..\..\Dependencies\Libraries\Sitecore\Sitecore.ContentSearch.LuceneProvider.dll</HintPath>
+      <HintPath>..\..\..\KillEverything.com\Dependencies\Sitecore.ContentSearch.LuceneProvider.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\Libraries\Sitecore\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\KillEverything.com\Dependencies\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -85,6 +85,9 @@
     <Compile Include="FieldTypes\DictionaryField.cs" />
     <Compile Include="FieldTypes\IFieldMappingProvider.cs" />
     <Compile Include="FieldTypes\RichTextField.cs" />
+    <Compile Include="Generation\GeneratorBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Generation\GeneratorParameterException.cs" />
     <Compile Include="Generation\IGeneratorParametersProvider.cs" />
     <Compile Include="Generation\Generator.cs" />

@@ -19,43 +19,39 @@ using Synthesis.ContentSearch;
 
 namespace Synthesis.Generation
 {
-	public class Generator
+	public class Generator : GeneratorBase
 	{
 		private GeneratorParameters Parameters { get; set; }
 		private TemplateGenerationInfoCollection Templates { get; set; }
 		private HashSet<string> _baseClassFields;
-		private readonly IFieldMappingProvider _fieldMappingProvider;
-		private readonly ITemplateInputProvider _templateInputProvider;
-		private readonly ITemplateSignatureProvider _templateSignatureProvider;
-		private readonly ISynthesisIndexFieldNameTranslator _indexFieldNameTranslator;
+		private IFieldMappingProvider _fieldMappingProvider;
+		private ITemplateInputProvider _templateInputProvider;
+		private ITemplateSignatureProvider _templateSignatureProvider;
+		private ISynthesisIndexFieldNameTranslator _indexFieldNameTranslator;
 
 		const string StandardTemplate = "STANDARD TEMPLATE";
 
-		public Generator(IGeneratorParametersProvider parameterProvider, ITemplateInputProvider templateProvider, ITemplateSignatureProvider templateSignatureProvider, IFieldMappingProvider fieldMappingProvider, ISynthesisIndexFieldNameTranslator indexFieldNameTranslator) 
-			:this(parameterProvider.CreateParameters(), templateProvider, templateSignatureProvider, fieldMappingProvider, indexFieldNameTranslator)
-		{
-		}
+        public override void Initialize(IGeneratorParametersProvider parameterProvider, ITemplateInputProvider templateProvider, ITemplateSignatureProvider templateSignatureProvider, IFieldMappingProvider fieldMappingProvider, ISynthesisIndexFieldNameTranslator indexFieldNameTranslator)
+        {
+            var parameters = parameterProvider.CreateParameters();
+            parameters.Validate();
+            Parameters = parameters;
 
-		public Generator(GeneratorParameters parameters, ITemplateInputProvider templateProvider, ITemplateSignatureProvider templateSignatureProvider, IFieldMappingProvider fieldMappingProvider, ISynthesisIndexFieldNameTranslator indexFieldNameTranslator)
-		{
-			parameters.Validate();
-			Parameters = parameters;
+            _templateInputProvider = templateProvider;
+            _templateSignatureProvider = templateSignatureProvider;
+            _fieldMappingProvider = fieldMappingProvider;
+            _indexFieldNameTranslator = indexFieldNameTranslator;
 
-			_templateInputProvider = templateProvider;
-			_templateSignatureProvider = templateSignatureProvider;
-			_fieldMappingProvider = fieldMappingProvider;
-			_indexFieldNameTranslator = indexFieldNameTranslator;
-
-			// load the templates we'll be generating into a state storage collection
-			var templates = templateProvider.CreateTemplateList();
-			Templates = new TemplateGenerationInfoCollection(parameters.UseTemplatePathForNamespace, parameters.TemplatePathRoot);
-			foreach (var template in templates) Templates.Add(template);
-		}
+            // load the templates we'll be generating into a state storage collection
+            var templates = templateProvider.CreateTemplateList();
+            Templates = new TemplateGenerationInfoCollection(parameters.UseTemplatePathForNamespace, parameters.TemplatePathRoot);
+            foreach (var template in templates) Templates.Add(template);
+        }
 
 		/// <summary>
 		/// Generates source code files and writes them to disk
 		/// </summary>
-		public void GenerateToDisk()
+		public override void GenerateToDisk()
 		{
 			var timer = new Stopwatch();
 			timer.Start();
